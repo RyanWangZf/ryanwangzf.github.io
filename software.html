@@ -14,8 +14,8 @@
 <tr valign="top">
 <td id="layout-menu">
 <div class="menu-category">Menu</div>
-<div class="menu-item"><a href="index.html">About&nbsp;Me</a></div>
-<div class="menu-item"><a href="publication.html">Publications</a></div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="publication.html">Publication</a></div>
 <div class="menu-item"><a href="software.html" class="current">Software</a></div>
 </td>
 <td id="layout-content">
@@ -23,45 +23,51 @@
 <h1>Software</h1>
 </div>
 
-<ul>
 
-<li>
-    <b>PyTrial: AI-driven Digital Clinical Trial Optimization.</b> [<a href="https://pytrial.readthedocs.io/en/latest/">Doc</a>] [<a href="https://github.com/RyanWangZf/pytrial">Github</a>]
-    <p><i>Highlight:</i> The first package that supports AI for comprehensive clinical trial tasks.
-    </p>
-    <img src="images/pytrial_tasks.png" width="600ptx"></img>
-</li>
-<br>
+<div class="infoblock">
+    <div class="blockcontent">
+            <b>PyTrial: AI-driven Digital Clinical Trial Optimization.</b> [<a href="https://pytrial.readthedocs.io/en/latest/">Doc</a>] [<a href="https://github.com/RyanWangZf/pytrial">Github</a>]
+            <li> A comprehensive package for various AI applications for drug development, especially in clinical trials.
+            <li> Achieve tasks such as patient outcome prediction, synthetic patient record generation, patient-trial matching, trial site selection, trial outcome prediction, trial similarity search.</li>
+            <li> Complete tutorials with examples for a fast ramp-up in using this package.</li>
+
+    </div>
+</div>
 
 
-<li>
-    <b>TransTab: Transferable Tabular Transformers.</b> [<a href="https://transtab.readthedocs.io/en/latest/">Doc</a>] [<a href="https://github.com/RyanWangZf/transtab">Github</a>]
-    <p><i>Highlight:</i> Support flexible learning and prediction with variable-column tables.
-    </p>
-    <!-- <img src="images/transtab_tasks.png" width="600ptx"></img> -->
-</li>
+<div class="infoblock">
+    <div class="blockcontent">
+        <b>TransTab: Transferable Tabular Transformers.</b> [<a href="https://transtab.readthedocs.io/en/latest/">Doc</a>] [<a href="https://github.com/RyanWangZf/transtab">Github</a>]
+            <li> A flexible tabular learning and prediction method that supports learning from variable-column tables. </li>
+            <li> Support varaious tasks such as tabular pretraining, transfer learning, and zero-shot prediction.</li>
+    </div>
+</div>
 
-<li>
-    <b>MedCLIP: Pretrained Medical Vision-Language Model.</b> [<a href="https://github.com/RyanWangZf/MedCLIP">Github</a>]
-    <p><i>Highlight:</i> Provide pretrained vision-language models learned from Chest X-rays and the reports.
-    </p>
-</li>
+<div class="infoblock">
+    <div class="blockcontent">
+        <b>MedCLIP: Pretrained Medical Vision-Language Model.</b> [<a href="https://github.com/RyanWangZf/MedCLIP">Github</a>]
+            <li> Contrastive pretraining of medical VLM on unpaired X-rays and radiology reports.  </li>
+            <li> Provide off-the-shelf pretrained VLM for further use.</li>
+    </div>
+</div>
 
-<li>
-    <b>Trial2Vec: Clinical Trial Similarity Search.</b> [<a href="https://github.com/RyanWangZf/Trial2Vec">Github</a>]
-    <p><i>Highlight:</i> The first package that supports clinical trial dense retrieval, with off-the-shelf pretrained models
-        and indexed trial embeddings.
-    </p>
-</li>
 
-<li>
-    <b>PromptEHR: Synthetic EHR Generation.</b> [<a href="https://github.com/RyanWangZf/PromptEHR">Github</a>]
-    <p><i>Highlight:</i> Provide pretrained language models for EHR sequence generation, with additional 10K synthetic data available.
-    </p>
-</li>
+<div class="infoblock">
+    <div class="blockcontent">
+        <b>Trial2Vec: Clinical Trial Similarity Search.</b> [<a href="https://github.com/RyanWangZf/Trial2Vec">Github</a>]
+        <li> Self-supervised training to encode clinical trial documents into semantically meaningful dense embeddings.  </li>
+        <li> Provide off-the-shelf pretrained language models for trial retrieval and pretrained embeddings for downstream tasks.</li>
+    </div>
+</div>
 
-</ul>
 
+<div class="infoblock">
+    <div class="blockcontent">
+        <b>PromptEHR: Synthetic EHR Generation.</b> [<a href="https://github.com/RyanWangZf/PromptEHR">Github</a>]
+        <li> Large language models as neural databases to memorize and generate electronic healthcare records (EHRs).  </li>
+        <li> Provide off-the-shelf pretrained language models for synthetic EHRs generation.</li>
+    </div>
+</div>
 
 </td>
 </tr>
