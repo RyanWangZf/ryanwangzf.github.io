@@ -14,8 +14,29 @@
       margin: auto; /* This centers the content */
     }
   </style>
+
+<title>Collapsible Author List</title>
+<style>
+    .collapsible {
+        cursor: pointer;
+        color: #000000;
+        text-decoration: underline;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+
+    .content {
+        display: none; /* Hidden by default */
+        margin-top: 10px;
+    }
+</style>
+
+
+
 </head>
+
 <body>
+
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
 <td id="layout-menu">
@@ -33,7 +54,11 @@
 <ul>
 
 <li><p><font color = "#000000"><b>Demystifying Large Language Models for Medicine: A Primer</b></font> [<a href="https://arxiv.org/pdf/2410.18856">PDF</a>] <br />
-    Qiao Jin, Nicholas Wan, Robert Leaman, Shubo Tian, Zhizheng Wang, Yifan Yang, <font color="#ac0000">Zifeng Wang</font>, [...], Zhiyong Lu.<br 
+    <span>Qiao Jin, Nicholas Wan, Robert Leaman, Shubo Tian, Zhizheng Wang, Yifan Yang, <font color="#ac0000">Zifeng Wang</font><font color="#000000"></span>
+    <span id="collapsibleAuthorList" class="collapsible">+ More authors ...</span>
+    <span id="authorContent" class="content">
+        <br />Guangzhi Xiong, Po-Ting Lai, Qingqing Zhu, Benjamin Hou, Maame Sarfo-Gyamfi, Gongbo Zhang, Aidan Gilson, Balu Bhasuran, Zhe He, Aidong Zhang, Jimeng Sun, Chunhua Weng, Ronald M. Summers, Qingyu Chen, Yifan Peng, Zhiyong Lu
+    </span><br />
     <i>Preprint.</i> </p>
     </li>
 
@@ -257,5 +282,22 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
 </td>
 </tr>
 </table>
+
+<script>
+    // Add event listeners to all collapsible elements
+    document.querySelectorAll(".collapsible").forEach(function (toggle) {
+        toggle.addEventListener("click", function () {
+            const content = this.nextElementSibling; // Find the adjacent .content span
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "inline";
+                this.textContent = "- Show fewer authors";
+            } else {
+                content.style.display = "none";
+                this.textContent = "+ More authors ...";
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
