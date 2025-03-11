@@ -8,14 +8,192 @@
 <link rel="shortcut icon" href="./images/favicon.png">
 <title>Zifeng Wang</title>
 <style>
+  :root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --light-accent: #e8f4fc;
+    --text-color: #333;
+    --light-gray: #f8f9fa;
+    --border-color: #e0e0e0;
+    --menu-width: 200px;
+  }
+
   body {
-    max-width: 1200px; /* Adjust the max-width as needed */
-    margin: auto; /* This centers the content */
+    max-width: 1200px;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #fff;
+  }
+  
+  #layout-menu {
+    background-color: white;
+    border-right: 1px solid var(--border-color);
+    padding: 20px 0;
+    width: var(--menu-width);
+  }
+  
+  .menu-category {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    padding: 0 20px 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .menu-item {
+    margin: 5px 0;
+    padding: 0;
+  }
+  
+  .menu-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s;
+    padding: 10px 20px;
+    display: block;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    border-left: 3px solid transparent;
+  }
+  
+  .menu-item a:hover {
+    background-color: var(--light-gray);
+    color: var(--accent-color);
+    border-left: 3px solid var(--accent-color);
+  }
+  
+  .menu-item a.current {
+    background-color: var(--light-gray);
+    color: var(--accent-color);
+    font-weight: bold;
+    border-left: 3px solid var(--accent-color);
+  }
+  
+  #layout-content {
+    padding: 20px 30px;
+  }
+  
+  #toptitle h1 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    margin-top: 30px;
+  }
+  
+  a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .infoblock {
+    background-color: white;
+    padding: 0;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+    border: none;
+  }
+  
+  .infoblock .blockcontent {
+    padding: 25px;
+    position: relative;
+    background-color: white;
+  }
+  
+  .infoblock .blockcontent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-color), #5dade2);
+  }
+  
+  .infoblock .blockcontent b {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .infoblock .blockcontent li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 5px;
+    list-style-type: none;
+  }
+  
+  .infoblock .blockcontent li::before {
+    content: '•';
+    color: var(--accent-color);
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+  }
+  
+  .infoblock .blockcontent a {
+    font-weight: 500;
+  }
+  
+  .infoblock .blockcontent a:hover {
+    color: #2980b9;
+  }
+  
+  .infoblock .blockcontent img {
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  
+  ul {
+    padding-left: 25px;
+  }
+  
+  ul li {
+    margin-bottom: 8px;
+  }
+  
+  table.imgtable {
+    margin-bottom: 20px;
+  }
+  
+  table.imgtable img {
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
   }
   
   #visitor-map-container {
-    width: 25%;  /* Adjust based on parent container */
-    aspect-ratio: 16 / 9; /* Adjust to your preferred shape */
+    width: 25%;
+    aspect-ratio: 16 / 9;
+    margin-top: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  /* Font color override for CV, Google Scholar, Github links */
+  [color="#ac0000"] {
+    color: var(--accent-color) !important;
+    font-weight: bold;
   }
 </style>
 </head>
@@ -147,6 +325,7 @@ Email: zifengw2 [at] illinois (dot) edu<br />
 
 <h2>Activity & Award</h2>
 <ul>
+  <li><p>Defended my PhD dissertation: Deep learning methods for clinical trial design, execution, and analysis, March 2025 </p></li>
   <li><p>News coverage by National Institutes of Health: <a href="https://www.nih.gov/news-events/news-releases/nih-developed-ai-algorithm-matches-potential-volunteers-clinical-trials">NIH-developed AI algorithm matches potential volunteers to clinical trials</a>, 2024 </p></li>
   <li><p>News coverage by Nature: <a href="https://www.nature.com/articles/d41586-024-00753-x">How AI is being used to accelerate clinical trials</a>, 2024 </p></li>
   <li><p>News coverage by AUANews: <a href="https://auanews.net/issues/articles/2024/march-2024/artificial-intelligence-connecting-patients-to-clinical-trials-with-artificial-intelligence">Connecting Patients to Clinical Trials With Artificial Intelligence</a>, 2024 </p></li>
