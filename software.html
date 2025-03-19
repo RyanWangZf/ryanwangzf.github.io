@@ -177,74 +177,257 @@
     color: var(--accent-color) !important;
     font-weight: bold;
   }
+
+  /* Software component styles - add at the end of style.css */
+  .software-card {
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.98), rgba(248,249,250,0.97));
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    margin: 30px 0;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 
+      0 10px 30px rgba(0,0,0,0.06),
+      0 1px 4px rgba(0,0,0,0.03);
+    border: 1px solid rgba(232,244,252,0.6);
+  }
+
+  .software-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 15px 35px rgba(0,0,0,0.08),
+      0 1px 4px rgba(0,0,0,0.04);
+  }
+
+  .software-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--accent-color) 0%,
+      #5dade2 50%,
+      var(--accent-color) 100%
+    );
+    z-index: 2;
+  }
+
+  .software-title {
+    padding: 25px 30px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .software-title h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.3em;
+    font-weight: 600;
+  }
+
+  .software-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .software-content {
+    padding: 20px 30px 25px;
+  }
+
+  .software-content ul {
+    margin: 0;
+    padding-left: 25px;
+  }
+
+  .software-content li {
+    position: relative;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .software-content li::marker {
+    color: var(--accent-color);
+  }
+
+  .software-card .github-stars {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: normal;
+    color: var(--text-color);
+  }
+
+  .software-card .github-stars:hover {
+    text-decoration: none;
+  }
+
+  .software-card .github-stars img {
+    margin: 0 0 0 8px;
+  }
+
+  .paper-link {
+    background-color: var(--light-accent);
+    color: var(--primary-color);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .paper-link:hover {
+    background-color: #d6e9f8;
+    text-decoration: none;
+  }
+
+  .doc-link {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .doc-link:hover {
+    background-color: #bbdefb;
+    text-decoration: none;
+  }
 </style>
 </head>
 <body>
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
-<td id="layout-menu">
-<div class="menu-category">Menu</div>
-<div class="menu-item"><a href="index.html">Home</a></div>
-<div class="menu-item"><a href="publication.html">Publication</a></div>
-<div class="menu-item"><a href="software.html" class="current">Software</a></div>
-</td>
+  <td id="layout-menu">
+    <div class="menu-category">Menu</div>
+    <div class="menu-item"><a href="index.html">Home</a></div>
+    <div class="menu-item"><a href="cv.html">Bio</a></div>
+    <div class="menu-item"><a href="publication.html">Publication</a></div>
+    <div class="menu-item"><a href="software.html" class="current">Software</a></div>
+    </td>
 <td id="layout-content">
 <div id="toptitle">
 <h1>Software</h1>
 </div>
 
-
-<div class="infoblock">
-    <div class="blockcontent">
-            <b>LEADS: a specialized LLM for medical literature mining</b> [<a href="https://arxiv.org/pdf/2501.16255">Paper</a>] <a href="https://github.com/RyanWangZf/LEADS"><img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/leads?label=Github%20Stars&style=social"></a> 
-            <li> Huggingface hosted model: <a href="https://huggingface.co/zifeng-ai/leads-mistral-7b-v1">LEADS</a>
-            <li> Huggingface hosted dataset: <a href="https://huggingface.co/datasets/zifeng-ai/LEADSInstruct">LEADSInstruct</a>
+<div class="software-card">
+  <div class="software-title">
+    <h3>LEADS: a specialized LLM for medical literature mining</h3>
+    <div class="software-links">
+      <a href="https://arxiv.org/pdf/2501.16255" class="paper-link">Paper</a>
+      <a href="https://github.com/RyanWangZf/LEADS" class="github-stars">
+        <img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/leads?label=Github%20Stars&style=social">
+      </a>
     </div>
+  </div>
+  <div class="software-content">
+    <ul>
+      <li>Huggingface hosted model: <a href="https://huggingface.co/zifeng-ai/leads-mistral-7b-v1">LEADS</a></li>
+      <li>Huggingface hosted dataset: <a href="https://huggingface.co/datasets/zifeng-ai/LEADSInstruct">LEADSInstruct</a></li>
+    </ul>
+  </div>
 </div>
 
-<div class="infoblock">
-    <div class="blockcontent">
-            <b>PyTrial: A Python Package for Artificial Intelligence for Drug Development.</b> [<a href="https://pytrial.readthedocs.io/en/latest/">Doc</a>] [<a href="https://arxiv.org/pdf/2306.04018.pdf">Paper</a>] <a href="https://github.com/RyanWangZf/pytrial"><img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/PyTrial?label=Github%20Stars&style=social"></a> 
-            <li> A comprehensive package for various AI applications for drug development, especially in clinical trials.
-            <li> Achieve tasks such as patient outcome prediction, synthetic patient record generation, patient-trial matching, trial site selection, trial outcome prediction, trial similarity search.</li>
-            <li> Complete tutorials with examples for a fast ramp-up in using this package.</li>
-
+<div class="software-card">
+  <div class="software-title">
+    <h3>PyTrial: A Python Package for Artificial Intelligence for Drug Development</h3>
+    <div class="software-links">
+      <a href="https://pytrial.readthedocs.io/en/latest/" class="doc-link">Doc</a>
+      <a href="https://arxiv.org/pdf/2306.04018.pdf" class="paper-link">Paper</a>
+      <a href="https://github.com/RyanWangZf/pytrial" class="github-stars">
+        <img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/PyTrial?label=Github%20Stars&style=social">
+      </a>
     </div>
+  </div>
+  <div class="software-content">
+    <ul>
+      <li>A comprehensive package for various AI applications for drug development, especially in clinical trials.</li>
+      <li>Achieve tasks such as patient outcome prediction, synthetic patient record generation, patient-trial matching, trial site selection, trial outcome prediction, trial similarity search.</li>
+      <li>Complete tutorials with examples for a fast ramp-up in using this package.</li>
+    </ul>
+  </div>
 </div>
 
-
-<div class="infoblock">
-    <div class="blockcontent">
-        <b>TransTab: Transferable Tabular Transformers.</b> [<a href="https://transtab.readthedocs.io/en/latest/">Doc</a>] <a href="https://github.com/RyanWangZf/transtab"><img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/transtab?label=Github%20Stars&style=social"></a> 
-            <li> A flexible tabular learning and prediction method that supports learning from variable-column tables. </li>
-            <li> Support varaious tasks such as tabular pretraining, transfer learning, and zero-shot prediction.</li>
+<div class="software-card">
+  <div class="software-title">
+    <h3>TransTab: Transferable Tabular Transformers</h3>
+    <div class="software-links">
+      <a href="https://transtab.readthedocs.io/en/latest/" class="doc-link">Doc</a>
+      <a href="https://github.com/RyanWangZf/transtab" class="github-stars">
+        <img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/transtab?label=Github%20Stars&style=social">
+      </a>
     </div>
+  </div>
+  <div class="software-content">
+    <ul>
+      <li>A flexible tabular learning and prediction method that supports learning from variable-column tables.</li>
+      <li>Support varaious tasks such as tabular pretraining, transfer learning, and zero-shot prediction.</li>
+    </ul>
+  </div>
 </div>
 
-<div class="infoblock">
-    <div class="blockcontent">
-        <b>MedCLIP: Pretrained Medical Vision-Language Model.</b> <a href="https://github.com/RyanWangZf/MedCLIP"><img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/medclip?label=Github%20Stars&style=social"></a> 
-            <li> Contrastive pretraining of medical VLM on unpaired X-rays and radiology reports.  </li>
-            <li> Provide off-the-shelf pretrained VLM for further use.</li>
+<div class="software-card">
+  <div class="software-title">
+    <h3>MedCLIP: Pretrained Medical Vision-Language Model</h3>
+    <div class="software-links">
+      <a href="https://github.com/RyanWangZf/MedCLIP" class="github-stars">
+        <img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/medclip?label=Github%20Stars&style=social">
+      </a>
     </div>
+  </div>
+  <div class="software-content">
+    <ul>
+      <li>Contrastive pretraining of medical VLM on unpaired X-rays and radiology reports.</li>
+      <li>Provide off-the-shelf pretrained VLM for further use.</li>
+    </ul>
+  </div>
 </div>
 
-
-<div class="infoblock">
-    <div class="blockcontent">
-        <b>Trial2Vec: Clinical Trial Similarity Search.</b> <a href="https://github.com/RyanWangZf/Trial2Vec"><img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/trial2vec?label=Github%20Stars&style=social"></a> 
-        <li> Self-supervised training to encode clinical trial documents into semantically meaningful dense embeddings.  </li>
-        <li> Provide off-the-shelf pretrained language models for trial retrieval and pretrained embeddings for downstream tasks.</li>
+<div class="software-card">
+  <div class="software-title">
+    <h3>Trial2Vec: Clinical Trial Similarity Search</h3>
+    <div class="software-links">
+      <a href="https://github.com/RyanWangZf/Trial2Vec" class="github-stars">
+        <img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/trial2vec?label=Github%20Stars&style=social">
+      </a>
     </div>
+  </div>
+  <div class="software-content">
+    <ul>
+      <li>Self-supervised training to encode clinical trial documents into semantically meaningful dense embeddings.</li>
+      <li>Provide off-the-shelf pretrained language models for trial retrieval and pretrained embeddings for downstream tasks.</li>
+    </ul>
+  </div>
 </div>
 
-
-<div class="infoblock">
-    <div class="blockcontent">
-        <b>PromptEHR: Synthetic EHR Generation.</b> <a href="https://github.com/RyanWangZf/PromptEHR"><img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/promptehr?label=Github%20Stars&style=social"></a> 
-        <li> Large language models as neural databases to memorize and generate electronic healthcare records (EHRs).  </li>
-        <li> Provide off-the-shelf pretrained language models for synthetic EHRs generation.</li>
+<div class="software-card">
+  <div class="software-title">
+    <h3>PromptEHR: Synthetic EHR Generation</h3>
+    <div class="software-links">
+      <a href="https://github.com/RyanWangZf/PromptEHR" class="github-stars">
+        <img alt="GitHub Repo Stars" src="https://img.shields.io/github/stars/ryanwangzf/promptehr?label=Github%20Stars&style=social">
+      </a>
     </div>
+  </div>
+  <div class="software-content">
+    <ul>
+      <li>Large language models as neural databases to memorize and generate electronic healthcare records (EHRs).</li>
+      <li>Provide off-the-shelf pretrained language models for synthetic EHRs generation.</li>
+    </ul>
+  </div>
 </div>
 
 </td>
