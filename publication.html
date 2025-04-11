@@ -55,13 +55,25 @@
     text-decoration: underline;
   }
 
-  /* Publication year headers */
+  /* Publication year headers - critical for spacing */
   h2[id^="year-"] {
-    margin-top: 30px;
-    margin-bottom: 15px;
     padding-bottom: 5px;
     border-bottom: 1px solid var(--border-color);
     color: var(--primary-color);
+    margin-bottom: 15px;
+    margin-top: 30px !important; /* Standard spacing for year headers */
+  }
+  
+  /* First year section always has zero top margin no matter what */
+  h2#year-2025 {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Fix filter container spacing */
+  #filter-section {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
   
   /* Fix for layout stability when filtering */
@@ -109,6 +121,35 @@
 </head>
 
 <body>
+<script>
+  // Immediate-execution script to fix first year heading margin
+  window.onload = function() {
+    // Force specific styles that might be getting overridden
+    var firstYear = document.getElementById('year-2025');
+    if (firstYear) {
+      firstYear.style.setProperty('margin-top', '0', 'important');
+      firstYear.style.setProperty('padding-top', '0', 'important');
+    }
+    
+    // Get filter container
+    var filterSection = document.getElementById('filter-section');
+    if (filterSection) {
+      filterSection.style.setProperty('margin-bottom', '0', 'important');
+      filterSection.style.setProperty('padding-bottom', '0', 'important');
+    }
+  };
+  
+  // Also run immediately
+  (function() {
+    setTimeout(function() {
+      var firstYear = document.getElementById('year-2025');
+      if (firstYear) {
+        firstYear.style.setProperty('margin-top', '0', 'important');
+        firstYear.style.setProperty('padding-top', '0', 'important');
+      }
+    }, 0);
+  })();
+</script>
 
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
@@ -124,7 +165,26 @@
 <h1>Publications</h1>
 </div>
 
-<div id="filter-container" style="margin-bottom: 20px;">
+<style>
+/* Additional style to ensure proper spacing */
+#filter-section {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#publications-section {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#year-2025 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+</style>
+
+<!-- Filter Section -->
+<div id="filter-section" style="margin-bottom: 0 !important; padding-bottom: 0 !important;">
   <div style="margin-bottom: 15px;">
     <h3 style="margin-bottom: 10px; color: var(--primary-color);">Filter by:</h3>
     <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
@@ -155,12 +215,14 @@
   </div>
 </div>
 
-<h2 id="year-2025">2025</h2>
-<ul class="pub-list" data-year="2025">
+<!-- Publications Section -->
+<div id="publications-section">
+  <h2 id="year-2025" style="margin-top: 0 !important; padding-top: 0 !important;">2025</h2>
+  <ul class="pub-list" data-year="2025">
 
-  <li class="pub-item" data-topics="ml,literature"><p><font color = "#000000"><b>DeepRetrieval: Hacking Real Search Engines and Retrievers with Large Language Models via Reinforcement Learning
-  </b></font> [<a href="https://arxiv.org/pdf/2503.00223">PDF</a>] <br />
-    Pengcheng Jiang, Jiacheng Lin, Lang Cao, Runchu Tian, SeongKu Kang, <span><font color="#ac0000">Zifeng Wang</font>,  Jimeng Sun, Jiawei Han.
+    <li class="pub-item" data-topics="ml,literature"><p><font color = "#000000"><b>DeepRetrieval: Hacking Real Search Engines and Retrievers with Large Language Models via Reinforcement Learning
+    </b></font> [<a href="https://arxiv.org/pdf/2503.00223">PDF</a>] <br />
+      Pengcheng Jiang, Jiacheng Lin, Lang Cao, Runchu Tian, SeongKu Kang, <span><font color="#ac0000">Zifeng Wang</font>,  Jimeng Sun, Jiawei Han.
     </span><br />
     <i>Preprint.</i> </p>
     </li>
@@ -216,7 +278,7 @@
         <a href="https://www.politico.com/newsletters/prescription-pulse/2024/11/19/using-ai-to-match-patients-to-clinical-trials-00190301">POLITICO</a>, 
         <a href="https://auanews.net/issues/articles/2024/march-2024/artificial-intelligence-connecting-patients-to-clinical-trials-with-artificial-intelligence">AUA News</a>, 
         <a href="https://devblogs.microsoft.com/azuregov/azure-openai-service-now-available-in-azure-gov-cloud/">Azure Government</a>,
-        <a href="https://informaconnect.com/ai-tech-trialgpt-can-cut-screening-time-by-40-says-nih/">Informa</a>,
+        <a href="https://informaconnect.com/ai-tech-trialgpt-can-cut-screening-time-by-40_says_nih/">Informa</a>,
         <a href="https://fedscoop.com/tag/trialgpt/">FedScoop</a>,
         <a href="https://www.msn.com/en-us/health/other/ai-algorithm-successfully-matches-potential-volunteers-to-clinical-trials/ar-AA1uiXum?ocid=Peregrine">MSN</a>
         </p>
@@ -356,8 +418,7 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
 
 </ul>
 
-</li>
-
+</div>
 
 <h2 id="year-before-2021">Before 2021</h2>
 <ul class="pub-list" data-year="before-2021">
@@ -449,12 +510,16 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
         const pubItems = document.querySelectorAll('.pub-item');
         const yearHeaders = document.querySelectorAll('h2[id^="year-"]');
         
+        // Critical: Ensure first year has zero margin top on page load
+        if (yearHeaders.length > 0) {
+            yearHeaders[0].style.setProperty('margin-top', '0', 'important');
+            yearHeaders[0].style.setProperty('padding-top', '0', 'important');
+        }
+        
         // Function to apply filters
         function applyFilters() {
             const selectedYear = yearFilter.value;
             const selectedTopic = topicFilter.value;
-            
-            console.log(`Applying filters - Year: ${selectedYear}, Topic: ${selectedTopic}`);
             
             // First show all items
             pubItems.forEach(item => {
@@ -491,7 +556,7 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
             let firstVisibleSectionFound = false;
             
             // Process sections in DOM order
-            yearHeaders.forEach(header => {
+            yearHeaders.forEach((header, index) => {
                 const year = header.id.replace('year-', '');
                 const list = document.querySelector(`.pub-list[data-year="${year}"]`);
                 
@@ -510,12 +575,14 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
                     header.style.display = '';
                     list.style.display = '';
                     
-                    // Add top margin to the first visible section to maintain spacing
+                    // CRITICAL: Always ensure first visible section has zero margin top
                     if (!firstVisibleSectionFound) {
-                        header.style.marginTop = '0';
+                        header.style.setProperty('margin-top', '0', 'important');
+                        header.style.setProperty('padding-top', '0', 'important');
                         firstVisibleSectionFound = true;
                     } else {
-                        header.style.marginTop = '30px'; // Reset to default
+                        // For other sections, use standard spacing
+                        header.style.setProperty('margin-top', '30px', 'important');
                     }
                 }
             });
@@ -558,10 +625,17 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
                 item.style.display = '';
             });
             
-            // Show all sections with default margins
-            yearHeaders.forEach(header => {
+            // Show all sections with proper margins
+            yearHeaders.forEach((header, index) => {
                 header.style.display = '';
-                header.style.marginTop = header.id === 'year-2025' ? '30px' : '30px';
+                
+                // CRITICAL: First section always has zero margin top
+                if (index === 0) {
+                    header.style.setProperty('margin-top', '0', 'important');
+                    header.style.setProperty('padding-top', '0', 'important');
+                } else {
+                    header.style.setProperty('margin-top', '30px', 'important');
+                }
             });
             
             pubLists.forEach(list => {
@@ -573,6 +647,9 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
         yearFilter.addEventListener('change', applyFilters);
         topicFilter.addEventListener('change', applyFilters);
         resetButton.addEventListener('click', resetFilters);
+        
+        // Call resetFilters once on page load to ensure proper initial state
+        resetFilters();
     });
 </script>
 
