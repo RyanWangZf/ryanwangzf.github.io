@@ -19,183 +19,72 @@
     --menu-width: 200px;
   }
 
-  body {
-    max-width: 1200px;
-    margin: auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-color);
-    line-height: 1.6;
-    background-color: #fff;
+  /* Only keep necessary styles */
+  #layout-content {
+    width: auto;
+    overflow: hidden;
+    min-height: 800px; /* Add minimum height to prevent layout collapse */
   }
   
+  /* Content styling */
+  .pub-list {
+    min-height: 10px; /* Prevent collapse */
+    padding-left: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .pub-item {
+    margin-bottom: 20px;
+    position: relative;
+    list-style-type: disc;
+  }
+  
+  .pub-item p {
+    max-width: 100%;
+    word-wrap: break-word;
+    margin: 0.5em 0;
+  }
+  
+  /* Style PDF links */
+  .pub-item a[href$=".pdf"], .pub-item a[href*="PDF"] {
+    color: #e74c3c;
+    text-decoration: none;
+  }
+  
+  .pub-item a[href$=".pdf"]:hover, .pub-item a[href*="PDF"]:hover {
+    text-decoration: underline;
+  }
+
+  /* Publication year headers */
+  h2[id^="year-"] {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--primary-color);
+  }
+  
+  /* Fix for layout stability when filtering */
+  #toptitle + div {
+    min-height: 600px; /* Ensure main content area has minimum height */
+  }
+  
+  /* Make sure filtered year sections maintain space */
+  h2[id^="year-"] + .pub-list {
+    min-height: 50px;
+  }
+  
+  /* Ensure the menu stays in place */
   #layout-menu {
-    background-color: white;
-    border-right: 1px solid var(--border-color);
-    padding: 20px 0;
+    position: relative;
+    top: 0;
     width: var(--menu-width);
   }
   
-  .menu-category {
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-size: 1.2em;
-    padding: 0 20px 10px;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  .menu-item {
-    margin: 5px 0;
-    padding: 0;
-  }
-  
-  .menu-item a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: all 0.3s;
-    padding: 10px 20px;
-    display: block;
-    margin: 0;
+  /* Keep the table layout stable */
+  #tlayout {
+    table-layout: fixed;
     width: 100%;
-    box-sizing: border-box;
-    border-left: 3px solid transparent;
-  }
-  
-  .menu-item a:hover {
-    background-color: var(--light-gray);
-    color: var(--accent-color);
-    border-left: 3px solid var(--accent-color);
-  }
-  
-  .menu-item a.current {
-    background-color: var(--light-gray);
-    color: var(--accent-color);
-    font-weight: bold;
-    border-left: 3px solid var(--accent-color);
-  }
-  
-  #layout-content {
-    padding: 20px 30px;
-  }
-  
-  #toptitle h1 {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
-  
-  h2 {
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 5px;
-    margin-top: 30px;
-  }
-  
-  a {
-    color: var(--accent-color);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  .infoblock {
-    background-color: white;
-    padding: 0;
-    margin: 30px 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    position: relative;
-    overflow: hidden;
-    border: none;
-  }
-  
-  .infoblock .blockcontent {
-    padding: 25px;
-    position: relative;
-    background-color: white;
-  }
-  
-  .infoblock .blockcontent::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(to right, var(--accent-color), #5dade2);
-  }
-  
-  .infoblock .blockcontent b {
-    color: var(--primary-color);
-    font-size: 1.2em;
-    display: block;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  .infoblock .blockcontent li {
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 5px;
-    list-style-type: none;
-  }
-  
-  .infoblock .blockcontent li::before {
-    content: '•';
-    color: var(--accent-color);
-    font-weight: bold;
-    position: absolute;
-    left: -15px;
-  }
-  
-  .infoblock .blockcontent a {
-    font-weight: 500;
-  }
-  
-  .infoblock .blockcontent a:hover {
-    color: #2980b9;
-  }
-  
-  .infoblock .blockcontent img {
-    vertical-align: middle;
-    margin-left: 8px;
-  }
-  
-  /* Font color override for CV, Google Scholar, Github links */
-  [color="#ac0000"] {
-    color: var(--accent-color) !important;
-    font-weight: bold;
-  }
-  
-  /* Collapsible author list styling */
-  .collapsible {
-    cursor: pointer;
-    color: var(--primary-color);
-    text-decoration: underline;
-    display: inline-block;
-    margin-bottom: 5px;
-    transition: color 0.2s;
-  }
-  
-  .collapsible:hover {
-    color: var(--accent-color);
-  }
-  
-  .content {
-    display: none; /* Hidden by default */
-    margin-top: 10px;
-  }
-  
-  ul {
-    padding-left: 25px;
-  }
-  
-  ul li {
-    margin-bottom: 8px;
   }
 </style>
 
@@ -232,13 +121,44 @@
     </td>
 <td id="layout-content">
 <div id="toptitle">
-<h1>Selected Publications</h1>
+<h1>Publications</h1>
 </div>
 
-<h2>2025</h2>
-<ul>
+<div id="filter-container" style="margin-bottom: 20px;">
+  <div style="margin-bottom: 15px;">
+    <h3 style="margin-bottom: 10px; color: var(--primary-color);">Filter by:</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+      <div style="margin-bottom: 5px;">
+        <strong>Years:</strong>
+        <select id="year-filter" style="padding: 5px; border-radius: 4px; border: 1px solid var(--border-color); margin-left: 5px;">
+          <option value="all">All Years</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="before-2021">Before 2021</option>
+        </select>
+      </div>
+      <div style="margin-bottom: 5px;">
+        <strong>Research Topics:</strong>
+        <select id="topic-filter" style="padding: 5px; border-radius: 4px; border: 1px solid var(--border-color); margin-left: 5px;">
+          <option value="all">All Topics</option>
+          <option value="literature">Literature Mining</option>
+          <option value="data-science">Data Science</option>
+          <option value="clinical">Clinical Trial</option>
+          <option value="healthcare">Healthcare</option>
+          <option value="ml">Machine Learning</option>
+        </select>
+      </div>
+      <button id="reset-filters" style="background-color: var(--accent-color); color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer;">Reset Filters</button>
+    </div>
+  </div>
+</div>
 
-  <li><p><font color = "#000000"><b>DeepRetrieval: Hacking Real Search Engines and Retrievers with Large Language Models via Reinforcement Learning
+<h2 id="year-2025">2025</h2>
+<ul class="pub-list" data-year="2025">
+
+  <li class="pub-item" data-topics="ml,literature"><p><font color = "#000000"><b>DeepRetrieval: Hacking Real Search Engines and Retrievers with Large Language Models via Reinforcement Learning
   </b></font> [<a href="https://arxiv.org/pdf/2503.00223">PDF</a>] <br />
     Pengcheng Jiang, Jiacheng Lin, Lang Cao, Runchu Tian, SeongKu Kang, <span><font color="#ac0000">Zifeng Wang</font>,  Jimeng Sun, Jiawei Han.
     </span><br />
@@ -246,47 +166,47 @@
     </li>
 
 
-<li><p><font color = "#000000"><b>InformGen: An AI Copilot for Accurate and Compliant Clinical Research Consent Document Generation</b></font> [<a href="https://arxiv.org/pdf/2504.00934">PDF</a>] <br />
+<li class="pub-item" data-topics="clinical"><p><font color = "#000000"><b>InformGen: An AI Copilot for Accurate and Compliant Clinical Research Consent Document Generation</b></font> [<a href="https://arxiv.org/pdf/2504.00934">PDF</a>] <br />
   <span><font color="#ac0000">Zifeng Wang</font>, Junyi Gao, Benjamin Danek, Brandon Theodorou, Ruba Shaik, Shivashankar Thati, Seunghyun Won, Jimeng Sun.
   </span><br />
   <i>Preprint.</i> </p>
   </li>
 
-<li><p><font color = "#000000"><b>A foundation model for human-AI collaboration in medical literature mining</b></font> [<a href="https://arxiv.org/pdf/2501.16255">PDF</a>] <br />
+<li class="pub-item" data-topics="literature"><p><font color = "#000000"><b>A foundation model for human-AI collaboration in medical literature mining</b></font> [<a href="https://arxiv.org/pdf/2501.16255">PDF</a>] <br />
     <span><font color="#ac0000">Zifeng Wang</font>, Lang Cao, Qiao Jin, Joey Chan, Nicholas Wan, Behdad Afzali, Hyun-Jin Cho, Chang-In Choi, Mehdi Emamverdi, Manjot K. Gill, Sun-Hyung Kim, Yijia Li, Yi Liu, Yiming Luo, Hanley Ong, Justin Rousseau, Irfan Sheikh, Jenny J. Wei, Ziyang Xu, Christopher M. Zallek, Kyungsang Kim, Yifan Peng, Zhiyong Lu, Jimeng Sun.
     </span><br />
     <i>Preprint.</i> </p>
     </li>
 </ul>
 
-<h2>2024</h2>
-<ul>
+<h2 id="year-2024">2024</h2>
+<ul class="pub-list" data-year="2024">
 
-<li><p><font color = "#000000"><b>Demystifying Large Language Models for Medicine: A Primer</b></font> [<a href="https://arxiv.org/pdf/2410.18856">PDF</a>] <br />
+<li class="pub-item" data-topics="healthcare"><p><font color = "#000000"><b>Demystifying Large Language Models for Medicine: A Primer</b></font> [<a href="https://arxiv.org/pdf/2410.18856">PDF</a>] <br />
     <span>Qiao Jin, Nicholas Wan, Robert Leaman, Shubo Tian, Zhizheng Wang, Yifan Yang, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Guangzhi Xiong, Po-Ting Lai, Qingqing Zhu, Benjamin Hou, Maame Sarfo-Gyamfi, Gongbo Zhang, Aidan Gilson, Balu Bhasuran, Zhe He, Aidong Zhang, Jimeng Sun, Chunhua Weng, Ronald M. Summers, Qingyu Chen, Yifan Peng, Zhiyong Lu.
     </span><br />
     <i>Preprint.</i> </p>
     </li>
 
 
-<li><p><font color = "#000000"><b>SynRL: Aligning Synthetic Clinical Trial Data with Human-preferred Clinical Endpoints Using Reinforcement Learning</b></font> [<a href="https://arxiv.org/pdf/2411.07317">PDF</a>] <br />
+<li class="pub-item" data-topics="clinical"><p><font color = "#000000"><b>SynRL: Aligning Synthetic Clinical Trial Data with Human-preferred Clinical Endpoints Using Reinforcement Learning</b></font> [<a href="https://arxiv.org/pdf/2411.07317">PDF</a>] <br />
     Trisha Das, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Afrah Shafquat, Mandis Beigi, Jason Mezey, Jimeng Sun.<br />
         <i>Preprint.</i> </p>
     </li>
 
-<li><p><font color = "#000000"><b>A Perspective for Adapting Generalist AI to Specialized Medical AI Applications and Their Challenges</b></font> [<a href="https://arxiv.org/pdf/2411.00024">PDF</a>] <br />
+<li class="pub-item" data-topics="healthcare"><p><font color = "#000000"><b>A Perspective for Adapting Generalist AI to Specialized Medical AI Applications and Their Challenges</b></font> [<a href="https://arxiv.org/pdf/2411.00024">PDF</a>] <br />
     <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Hanyin Wang, Benjamin Danek, Ying Li, Christina Mack, Luk Arbuckle, Devyani Biswal, Hoifung Poon, Yajuan Wang, Pranav Rajpurkar, Jimeng Sun. <br />
     <i>Preprint.</i> </p>
 </li>
 
 
-<li><p><font color = "#000000"><b>Can Large Language Models Replace Data Scientists in Biomedical Research?</b></font> [<a href="https://arxiv.org/pdf/2410.21591">PDF</a>] <br />
+<li class="pub-item" data-topics="data-science"><p><font color = "#000000"><b>Can Large Language Models Replace Data Scientists in Biomedical Research?</b></font> [<a href="https://arxiv.org/pdf/2410.21591">PDF</a>] <br />
     <font color="#ac0000">Zifeng Wang*</font><font color="#000000">, Benjamin Danek*, Ziwei Yang, Zheng Chen, Jimeng Sun. <br />
     <i>Preprint.</i> </p>
 </li>
 
 
-<li><p><font color = "#000000"><b>Matching Patients to Clinical Trials with Large Language Models</b></font> [<a href="https://www.nature.com/articles/s41467-024-53081-z">PDF</a>] <br />
+<li class="pub-item" data-topics="clinical"><p><font color = "#000000"><b>Matching Patients to Clinical Trials with Large Language Models</b></font> [<a href="https://www.nature.com/articles/s41467-024-53081-z">PDF</a>] <br />
         Qiao Jin, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Charalampos S. Floudas, Fangyuan Chen, Changlin Gong, Dara Bracken-Clarke, Elisabetta Xue, Yifan Yang, Jimeng Sun, Zhiyong Lu. <br/>
             <i><font color = "#0000ff">Nature Communications</font></i>, 2024 </p>
         <p>News Coverage: <a href="https://www.nature.com/articles/d41586-024-00753-x">Nature</a>, 
@@ -299,34 +219,35 @@
         <a href="https://informaconnect.com/ai-tech-trialgpt-can-cut-screening-time-by-40-says-nih/">Informa</a>,
         <a href="https://fedscoop.com/tag/trialgpt/">FedScoop</a>,
         <a href="https://www.msn.com/en-us/health/other/ai-algorithm-successfully-matches-potential-volunteers-to-clinical-trials/ar-AA1uiXum?ocid=Peregrine">MSN</a>
+        </p>
     </li>
 
-<li><p><font color = "#000000"><b>Accelerating Clinical Evidence Synthesis with Large Language Models</b></font> [<a href="https://arxiv.org/abs/2406.17755">PDF</a>] <br />
+<li class="pub-item" data-topics="literature"><p><font color = "#000000"><b>Accelerating Clinical Evidence Synthesis with Large Language Models</b></font> [<a href="https://arxiv.org/abs/2406.17755">PDF</a>] <br />
     <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Lang Cao, Benjamin Danek, Yichi Zhang, Qiao Jin, Zhiyong Lu, Jimeng Sun. <br />
     <i>Preprint.</i> </p>
     </li>
 
-<li><p><font color = "#000000"><b>Panacea: A foundation model for clinical trial search, summarization, design, and recruitment</b></font> [<a href="https://www.medrxiv.org/content/10.1101/2024.06.26.24309548v1.full.pdf">PDF</a>] <br />
+<li class="pub-item" data-topics="clinical"><p><font color = "#000000"><b>Panacea: A foundation model for clinical trial search, summarization, design, and recruitment</b></font> [<a href="https://www.medrxiv.org/content/10.1101/2024.06.26.24309548v1.full.pdf">PDF</a>] <br />
     Jiacheng Lin, Hanwen Xu, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Sheng Wang, Jimeng Sun. <br />
     <i>Preprint.</i> </p>
     </li>
         
-<li><p><font color = "#000000"><b>MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models</b></font> [<a href="https://arxiv.org/abs/2308.09729">PDF</a>] <br />
+<li class="pub-item" data-topics="ml"><p><font color = "#000000"><b>MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models</b></font> [<a href="https://arxiv.org/abs/2308.09729">PDF</a>] <br />
     Yilin Wen*, <font color="#ac0000">Zifeng Wang*</font><font color="#000000">, Jimeng Sun<br />
         <i><font color = "#0000ff">ACL'24</font></i> </p>
     </li>
 
-<!-- <li><p><font color = "#000000"><b>GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models</b></font> [<a href="https://arxiv.org/abs/2402.10744">PDF</a>] <br />
+<!-- <li class="pub-item" data-topics="ai-medicine"><p><font color = "#000000"><b>GenRES: Rethinking Evaluation for Generative Relation Extraction in the Era of Large Language Models</b></font> [<a href="https://arxiv.org/abs/2402.10744">PDF</a>] <br />
     Pengcheng Jiang, Jiacheng Lin, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Jimeng Sun, Jiawei Han. <br />
         <i><font color = "#0000ff">NAACL'24</font></i> </p>
     </li> -->
 <!-- 
-<li><p><font color = "#000000"><b>PILOT: Legal Case Outcome Prediction with Case Law</b></font> [<a href="https://arxiv.org/abs/2401.15770">PDF</a>] <br />
+<li class="pub-item" data-topics="ai-medicine"><p><font color = "#000000"><b>PILOT: Legal Case Outcome Prediction with Case Law</b></font> [<a href="https://arxiv.org/abs/2401.15770">PDF</a>] <br />
 Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xiao, Jimeng Sun. <br />
     <i><font color = "#0000ff">NAACL'24</font></i> </p>
 </li> -->
 <!-- 
-<li><p><font color = "#000000"><b>TriSum: Learning Summarization Ability from Large Language Models</b></font> [<a href="https://openreview.net/pdf/bfc13c68afe5f1545deefda099363b9ce48cd5a9.pdf">PDF</a>] <br />
+<li class="pub-item" data-topics="ai-medicine"><p><font color = "#000000"><b>TriSum: Learning Summarization Ability from Large Language Models</b></font> [<a href="https://openreview.net/pdf/bfc13c68afe5f1545deefda099363b9ce48cd5a9.pdf">PDF</a>] <br />
     Pengcheng Jiang, Cao Xiao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Parminder Bhatia, Jimeng Sun, Jiawei Han. <br />
         <i><font color = "#0000ff">NAACL'24</font></i> </p>
     </li> -->
@@ -334,161 +255,161 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
 </ul>
 
 
-<h2>2023</h2>
-    <ul>
+<h2 id="year-2023">2023</h2>
+<ul class="pub-list" data-year="2023">
 
-      <li><p><font color = "#000000"><b>BioBridge: Bridging Biomedical Foundation Models via Knowledge Graph 	</b></font> [<a href="https://arxiv.org/abs/2310.03320">PDF</a>] <br />
-        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Zichen Wang, Balasubramaniam Srinivasan, Vassilis N. Ioannidis, Huzefa Rangwala, Rishita Anubhai. <br />
-            <i><font color = "#0000ff">ICLR'24</font></i> </p>
+  <li class="pub-item" data-topics="ml"><p><font color = "#000000"><b>BioBridge: Bridging Biomedical Foundation Models via Knowledge Graph 	</b></font> [<a href="https://arxiv.org/abs/2310.03320">PDF</a>] <br />
+    <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Zichen Wang, Balasubramaniam Srinivasan, Vassilis N. Ioannidis, Huzefa Rangwala, Rishita Anubhai. <br />
+        <i><font color = "#0000ff">ICLR'24</font></i> </p>
+    </li>
+
+    <li class="pub-item" data-topics="ml"><p><font color = "#000000"><b>UniPredict: Large Language Models are Universal Tabular Classifiers</b></font> [<a href="https://arxiv.org/abs/2310.03266">PDF</a>] <br />
+        Ruiyu Wang*, <font color="#ac0000">Zifeng Wang*</font><font color="#000000">, Jimeng Sun<br />
+        <i>Preprint.</i> </p>
         </li>
 
-        <li><p><font color = "#000000"><b>UniPredict: Large Language Models are Universal Tabular Classifiers</b></font> [<a href="https://arxiv.org/abs/2310.03266">PDF</a>] <br />
-            Ruiyu Wang*, <font color="#ac0000">Zifeng Wang*</font><font color="#000000">, Jimeng Sun<br />
-            <i>Preprint.</i> </p>
-            </li>
-
-        <!-- <li><p><font color = "#000000"><b>CITING: Large Language Models Create Curriculum for Instruction Tuning</b></font> [<a href="https://arxiv.org/abs/2310.02527">PDF</a>] <br />
-            Tao Feng*, <font color="#ac0000">Zifeng Wang*</font><font color="#000000">, Jimeng Sun. <br />
-            <i>Preprint.</i> </p>
-            </li> -->
-
-
-        <li><p><font color = "#000000"><b>PyTrial: Machine Learning Software and Benchmark for Clinical Trial Applications</b></font> [<a href="https://arxiv.org/abs/2306.04018">PDF</a>] <br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Brandon Theodoru, Tianfan Fu, Cao Xiao, Jimeng Sun. <br />
-            <i>Preprint.</i> </p>
-            </li>
-
-
-        <li><p><font color = "#000000"><b>MediTab: Scaling Medical Tabular Data Predictors via Data Consolidation, Enrichment, and Refinement</b></font> [<a href="https://arxiv.org/abs/2305.12081">PDF</a>] <br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000">*, Chufan Gao*, Cao Xiao, Jimeng Sun. <br />
-                <i><font color = "#0000ff">IJCAI'24</font></i </p>
-            </li>
-
-        <li><p><font color = "#000000"><b>AutoTrial: Prompting Language Models for Clinical Trial Design</b></font> [<a href="https://arxiv.org/abs/2305.11366">PDF</a>] <br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xiao, Jimeng Sun. <br />
-                <i><font color = "#0000ff">EMNLP'23</font></i> </p>
-            </li>
-
-
-        <li><p><font color = "#000000"><b>SPOT: Sequential Predictive Modeling of Clinical Trial Outcome with Meta-Learning</b></font> [<a href="https://arxiv.org/abs/2304.05352">PDF</a>] <br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xiao, Jimeng Sun. <br />
-                <i><font color = "#0000ff">ACM-BCB'23</font></i> </p>
-            </li>
-
-        <li><p><font color = "#000000"><b>TWIN: Personalized Clinical Trial Digital Twin Generation</b></font> [<a href="https://dl.acm.org/doi/pdf/10.1145/3580305.3599534">PDF</a>]  <br />
-            Trisha Das*, <font color="#ac0000">Zifeng Wang*</font><font color="#000000">, and Jimeng Sun. <br />
-                <i><font color = "#0000ff">KDD'23</font> </i> </p>
-            </li>
-    </ul>
-
-
-<h2>2022</h2>
-
-<ul>
-    <li>
-        <p>
-            <font color="#000000"><b>PromptEHR: Conditional Electronic Healthcare Records Generation with Prompt Learning</b></font> [<a href="https://arxiv.org/abs/2211.01761">PDF</a>] <br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Jimeng Sun. <br />
-            <i><font color="#0000ff">EMNLP'22</font>. </i>
-        </p>
-    </li>
-    
-    <li>
-        <p>
-            <font color="#000000"><b>MedCLIP: Contrastive Learning from Unpaired Medical Images and Texts</b></font> [<a href="https://arxiv.org/abs/2210.10163">PDF</a>] [<a href="https://www.youtube.com/watch?v=mTS0AvUilrM">Video</a>]<br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Zhenbang Wu, Dinesh Agarwal, and Jimeng Sun. <br />
-            <i><font color="#0000ff">EMNLP'22</font>.</i>
-        </p>
-    </li>
-    
-    <li>
-        <p>
-            <font color="#000000"><b>Trial2Vec: Zero-Shot Clinical Trial Document Similarity Search using Self-Supervision</b></font> [<a href="https://arxiv.org/abs/2206.14719">PDF</a>] <br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Jimeng Sun. <br />
-            <i><font color="#0000ff">Findings of EMNLP'22</font></i>
-        </p>
-    </li>
-    
-    <li>
-        <p>
-            <font color="#000000"><b>TransTab: Learning Transferable Tabular Transformers Across Tables</b></font> [<a href="https://arxiv.org/abs/2205.09328">PDF</a>] [<a href="https://transtab.readthedocs.io/en/latest/index.html">Package</a>] [<a href="files/poster-neurips-22-transtab.pdf">Poster</a>]<br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Jimeng Sun. <br />
-            <i><font color="#0000ff">NeurIPS'22</font></i>
-        </p>
-    </li>
-    
-    
-    <li>
-        <p>
-            <font color="#000000"><b>SurvTRACE: Transformer for Survival Analysis with Competing Events</b></font> [<a href="https://arxiv.org/abs/2110.00855">PDF</a>] <br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Jimeng Sun. <br />
-            <a href="https://acm-bcb.org/"><i><font color="#0000ff">ACM-BCB'22</font></i> </a>
-        </p>
-    </li>
-
-
-    <!-- <li><p><font color = "#000000"><b>Artificial Intelligence for In Silico Clinical Trials: A Review</b></font> [<a href="https://arxiv.org/abs/2209.09023">PDF</a>] <br />
-        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Chufan Gao, Lucas M. Glass, Jimeng Sun. <br />
+    <!-- <li class="pub-item" data-topics="generalist-models,trustworthy-ml"><p><font color = "#000000"><b>CITING: Large Language Models Create Curriculum for Instruction Tuning</b></font> [<a href="https://arxiv.org/abs/2310.02527">PDF</a>] <br />
+        Tao Feng*, <font color="#ac0000">Zifeng Wang*</font><font color="#000000">, Jimeng Sun. <br />
         <i>Preprint.</i> </p>
         </li> -->
-    
+
+
+    <li class="pub-item" data-topics="clinical"><p><font color = "#000000"><b>PyTrial: Machine Learning Software and Benchmark for Clinical Trial Applications</b></font> [<a href="https://arxiv.org/abs/2306.04018">PDF</a>] <br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Brandon Theodoru, Tianfan Fu, Cao Xiao, Jimeng Sun. <br />
+        <i>Preprint.</i> </p>
+        </li>
+
+
+    <li class="pub-item" data-topics="healthcare"><p><font color = "#000000"><b>MediTab: Scaling Medical Tabular Data Predictors via Data Consolidation, Enrichment, and Refinement</b></font> [<a href="https://arxiv.org/abs/2305.12081">PDF</a>] <br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000">*, Chufan Gao*, Cao Xiao, Jimeng Sun. <br />
+            <i><font color = "#0000ff">IJCAI'24</font></i </p>
+        </li>
+
+    <li class="pub-item" data-topics="clinical"><p><font color = "#000000"><b>AutoTrial: Prompting Language Models for Clinical Trial Design</b></font> [<a href="https://arxiv.org/abs/2305.11366">PDF</a>] <br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xiao, Jimeng Sun. <br />
+            <i><font color = "#0000ff">EMNLP'23</font></i> </p>
+        </li>
+
+
+    <li class="pub-item" data-topics="clinical"><p><font color = "#000000"><b>SPOT: Sequential Predictive Modeling of Clinical Trial Outcome with Meta-Learning</b></font> [<a href="https://arxiv.org/abs/2304.05352">PDF</a>] <br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xiao, Jimeng Sun. <br />
+            <i><font color = "#0000ff">ACM-BCB'23</font></i> </p>
+        </li>
+
+    <li class="pub-item" data-topics="clinical"><p><font color = "#000000"><b>TWIN: Personalized Clinical Trial Digital Twin Generation</b></font> [<a href="https://dl.acm.org/doi/pdf/10.1145/3580305.3599534">PDF</a>]  <br />
+        Trisha Das*, <font color="#ac0000">Zifeng Wang*</font><font color="#000000">, and Jimeng Sun. <br />
+            <i><font color = "#0000ff">KDD'23</font> </i> </p>
+        </li>
+</ul>
+
+
+<h2 id="year-2022">2022</h2>
+<ul class="pub-list" data-year="2022">
+
+<li class="pub-item" data-topics="healthcare">
+    <p>
+        <font color="#000000"><b>PromptEHR: Conditional Electronic Healthcare Records Generation with Prompt Learning</b></font> [<a href="https://arxiv.org/abs/2211.01761">PDF</a>] <br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Jimeng Sun. <br />
+        <i><font color="#0000ff">EMNLP'22</font>. </i>
+    </p>
+</li>
+
+<li class="pub-item" data-topics="healthcare">
+    <p>
+        <font color="#000000"><b>MedCLIP: Contrastive Learning from Unpaired Medical Images and Texts</b></font> [<a href="https://arxiv.org/abs/2210.10163">PDF</a>] [<a href="https://www.youtube.com/watch?v=mTS0AvUilrM">Video</a>]<br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Zhenbang Wu, Dinesh Agarwal, and Jimeng Sun. <br />
+        <i><font color="#0000ff">EMNLP'22</font>.</i>
+    </p>
+</li>
+
+<li class="pub-item" data-topics="clinical">
+    <p>
+        <font color="#000000"><b>Trial2Vec: Zero-Shot Clinical Trial Document Similarity Search using Self-Supervision</b></font> [<a href="https://arxiv.org/abs/2206.14719">PDF</a>] <br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Jimeng Sun. <br />
+        <i><font color="#0000ff">Findings of EMNLP'22</font></i>
+    </p>
+</li>
+
+<li class="pub-item" data-topics="ml">
+    <p>
+        <font color="#000000"><b>TransTab: Learning Transferable Tabular Transformers Across Tables</b></font> [<a href="https://arxiv.org/abs/2205.09328">PDF</a>] [<a href="https://transtab.readthedocs.io/en/latest/index.html">Package</a>] [<a href="files/poster-neurips-22-transtab.pdf">Poster</a>]<br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Jimeng Sun. <br />
+        <i><font color="#0000ff">NeurIPS'22</font></i>
+    </p>
+</li>
+
+
+<li class="pub-item" data-topics="healthcare">
+    <p>
+        <font color="#000000"><b>SurvTRACE: Transformer for Survival Analysis with Competing Events</b></font> [<a href="https://arxiv.org/abs/2110.00855">PDF</a>] <br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Jimeng Sun. <br />
+        <a href="https://acm-bcb.org/"><i><font color="#0000ff">ACM-BCB'22</font></i> </a>
+    </p>
+</li>
+
+
+<!-- <li class="pub-item" data-topics="ai-medicine,health-intelligence"><p><font color = "#000000"><b>Artificial Intelligence for In Silico Clinical Trials: A Review</b></font> [<a href="https://arxiv.org/abs/2209.09023">PDF</a>] <br />
+    <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Chufan Gao, Lucas M. Glass, Jimeng Sun. <br />
+    <i>Preprint.</i> </p>
+    </li> -->
+
 
 </ul>
 
 </li>
 
 
-<h2>Before 2021</h2>
-<ul>
+<h2 id="year-before-2021">Before 2021</h2>
+<ul class="pub-list" data-year="before-2021">
 
-  <li>
+<li class="pub-item" data-topics="ml">
+<p>
+    <font color="#000000"><b>PAC-Bayes Information Bottleneck</b></font> [<a href="https://arxiv.org/abs/2109.14509">PDF</a>] [<a href="files/ICLR_PIB_2022_3_29.pdf">Slides</a>] [<a href="https://www.bilibili.com/video/BV1N44y1K7H6?spm_id_from=333.337.search-card.all.click&vd_source=9d81b177cc98b61575e7132cb45f45eb">Video(CN)</a>]  <br />
+    <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Shao-Lun Huang, Ercan E. Kuruoglu, Jimeng Sun, Xi Chen, and Yefeng Zheng. <br />
+    <i><font color="#0000ff">ICLR'22</font> </i>. <a><font color="#ac0000">Spotlight (176/3391).</font></a><font color="#000000"> </font>
+</p>
+</li>
+
+<li class="pub-item" data-topics="ml">
     <p>
-        <font color="#000000"><b>PAC-Bayes Information Bottleneck</b></font> [<a href="https://arxiv.org/abs/2109.14509">PDF</a>] [<a href="files/ICLR_PIB_2022_3_29.pdf">Slides</a>] [<a href="https://www.bilibili.com/video/BV1N44y1K7H6?spm_id_from=333.337.search-card.all.click&vd_source=9d81b177cc98b61575e7132cb45f45eb">Video(CN)</a>]  <br />
-        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Shao-Lun Huang, Ercan E. Kuruoglu, Jimeng Sun, Xi Chen, and Yefeng Zheng. <br />
-        <i><font color="#0000ff">ICLR'22</font> </i>. <a><font color="#ac0000">Spotlight (176/3391).</font></a><font color="#000000"> </font>
+        <font color="#000000"><b>Finding Influential Instances for Distantly Supervised Relation Extraction</b></font> [<a href="https://arxiv.org/abs/2009.09841">PDF</a>] <br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Rui Wen, Xi Chen, Shao-Lun Huang, Ningyu Zhang, and Yefeng Zheng. <br />
+        <i><font color="#0000ff">COLING'22</font></i>. <a><font color="#ac0000">Oral.</font></a><font color="#000000"> </font>
     </p>
 </li>
 
-    <li>
-        <p>
-            <font color="#000000"><b>Finding Influential Instances for Distantly Supervised Relation Extraction</b></font> [<a href="https://arxiv.org/abs/2009.09841">PDF</a>] <br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Rui Wen, Xi Chen, Shao-Lun Huang, Ningyu Zhang, and Yefeng Zheng. <br />
-            <i><font color="#0000ff">COLING'22</font></i>. <a><font color="#ac0000">Oral.</font></a><font color="#000000"> </font>
-        </p>
+<li class="pub-item" data-topics="healthcare"><p><font color = "#000000"><b>Lifelong Learning Disease Diagnosis on Clinical Notes</b></font> [<a href="https://link.springer.com/content/pdf/10.1007/978-3-030-75762-5_18.pdf">PDF</a>] [<a href="https://www.bilibili.com/video/BV1J5411g737">Video</a>]<br />
+    <font color="#ac0000">Zifeng Wang</font><font color="#000000">,  Yifan Yang, Rui Wen, Xi Chen, Shao-Lun Huang, and Yefeng Zheng. <br />
+        <i><font color = "#0000ff">PAKDD'21</font> </i>. <a href="files/Certi-PAKDD_Best Student Paper Award.pdf"><font color="#ac0000">Best Student Paper Award (1/768).</font></a><font color="#000000"> </p>
+        </li>
     </li>
-
-    <li><p><font color = "#000000"><b>Lifelong Learning Disease Diagnosis on Clinical Notes</b></font> [<a href="https://link.springer.com/content/pdf/10.1007/978-3-030-75762-5_18.pdf">PDF</a>] [<a href="https://www.bilibili.com/video/BV1J5411g737">Video</a>]<br />
-        <font color="#ac0000">Zifeng Wang</font><font color="#000000">,  Yifan Yang, Rui Wen, Xi Chen, Shao-Lun Huang, and Yefeng Zheng. <br />
-            <i><font color = "#0000ff">PAKDD'21</font> </i>. <a href="files/Certi-PAKDD_Best Student Paper Award.pdf"><font color="#ac0000">Best Student Paper Award (1/768).</font></a><font color="#000000"> </p>
-            </li>
+    
+    
+    <li class="pub-item" data-topics="healthcare"><p><font color = "#000000"><b>Online Disease Self-diagnosis with Inductive Heterogeneous Graph Convolutional Networks</b></font> [<a href="https://arxiv.org/abs/2009.02625">PDF</a>] [<a href="https://www.bilibili.com/video/BV1ib4y1Q7MJ">Video</a>]<br /><font color="#ac0000">Zifeng Wang</font><font color="#000000">, Rui Wen, Xi Chen, Shilei Cao, Shao-Lun Huang, Buyue Qian, and Yefeng Zheng. <br />
+    <i><font color = "#0000ff">WWW'21</font> </i>. </p>
+    </li>
+    
+    
+    <li class="pub-item" data-topics="ml"><p><font color = "#000000"><b>Information Theoretic Counterfactual Learning from Missing-Not-At-Random Feedback</b></font> [<a href="https://arxiv.org/abs/2009.02623">PDF</a>] [<a href="https://www.bilibili.com/video/BV1Qv411k76d">Video</a>]<br />
+        <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Xi Chen, Rui Wen, Shao-Lun Huang, Ercan E. Kuruoglu, and Yefeng Zheng. <br />
+        <i><font color = "#0000ff">NeurIPS'20</font> </i>. </p>
         </li>
-        
-        
-        <li><p><font color = "#000000"><b>Online Disease Self-diagnosis with Inductive Heterogeneous Graph Convolutional Networks</b></font> [<a href="https://arxiv.org/abs/2009.02625">PDF</a>] [<a href="https://www.bilibili.com/video/BV1ib4y1Q7MJ">Video</a>]<br /><font color="#ac0000">Zifeng Wang</font><font color="#000000">, Rui Wen, Xi Chen, Shilei Cao, Shao-Lun Huang, Buyue Qian, and Yefeng Zheng. <br />
-        <i><font color = "#0000ff">WWW'21</font> </i>. </p>
-        </li>
-        
-        
-        <li><p><font color = "#000000"><b>Information Theoretic Counterfactual Learning from Missing-Not-At-Random Feedback</b></font> [<a href="https://arxiv.org/abs/2009.02623">PDF</a>] [<a href="https://www.bilibili.com/video/BV1Qv411k76d">Video</a>]<br />
-            <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Xi Chen, Rui Wen, Shao-Lun Huang, Ercan E. Kuruoglu, and Yefeng Zheng. <br />
-            <i><font color = "#0000ff">NeurIPS'20</font> </i>. </p>
+    
+    <li class="pub-item" data-topics="ml"><p><font color = "#000000"><b>Less Is Better: Unweighted Data Subsampling via Influence Function</b></font> [<a href="https://arxiv.org/abs/1912.01321">PDF</a>]<br />
+            <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Hong Zhu, Zhenhua Dong, Xiuqiang He, and Shao-Lun Huang. <br />
+            <i><font color = "#0000ff">AAAI'20</font> </i>. </p>
             </li>
-        
-        <li><p><font color = "#000000"><b>Less Is Better: Unweighted Data Subsampling via Influence Function</b></font> [<a href="https://arxiv.org/abs/1912.01321">PDF</a>]<br />
-                <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Hong Zhu, Zhenhua Dong, Xiuqiang He, and Shao-Lun Huang. <br />
-                <i><font color = "#0000ff">AAAI'20</font> </i>. </p>
-                </li>
 
 
-<li><p><font color = "#000000"><b>Deep Semantic Segmentation for Visual Understanding on Construction Sites</b></font> [<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/mice.12701">PDF</a>] <br />
+<li class="pub-item" data-topics="ml"><p><font color = "#000000"><b>Deep Semantic Segmentation for Visual Understanding on Construction Sites</b></font> [<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/mice.12701">PDF</a>] <br />
 <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Yuyang Zhang, Khalid M. Mosalam, Yuqing Gao, and Shao-Lun Huang.  <br />
 <i><font color = "#0000ff">Computer-Aided Civil and Infrastructure Engineering (CACAIE)</font>, 1-18 (2021).</i> </p>
 </li>
 
-<li><p><font color = "#000000"><b>Data-driven Risk Assessment on Urban Pipeline Network Based on a Cluster Model</b></font> [<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/mice.12701">PDF</a>] <br />
-    <font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Suzhen Li.  <br />
-    <i><font color = "#0000ff">Reliability Engineering & System Safety</font>, 196: 106781 (2019).</i> </p>
-    </li>
+<li class="pub-item" data-topics="ml"><p><font color = "#000000"><b>Data-driven Risk Assessment on Urban Pipeline Network Based on a Cluster Model</b></font> [<a href="https://onlinelibrary.wiley.com/doi/full/10.1111/mice.12701">PDF</a>] <br />
+<font color="#ac0000">Zifeng Wang</font><font color="#000000"> and Suzhen Li.  <br />
+<i><font color = "#0000ff">Reliability Engineering & System Safety</font>, 196: 106781 (2019).</i> </p>
+</li>
 
 </ul>
 </li>
@@ -512,6 +433,146 @@ Lang Cao, <font color="#ac0000">Zifeng Wang</font><font color="#000000">, Cao Xi
                 this.textContent = "+ More authors ...";
             }
         });
+    });
+</script>
+
+<script>
+    // Publication filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get filter elements
+        const yearFilter = document.getElementById('year-filter');
+        const topicFilter = document.getElementById('topic-filter');
+        const resetButton = document.getElementById('reset-filters');
+        
+        // Get all publication lists and items
+        const pubLists = document.querySelectorAll('.pub-list');
+        const pubItems = document.querySelectorAll('.pub-item');
+        const yearHeaders = document.querySelectorAll('h2[id^="year-"]');
+        
+        // Function to apply filters
+        function applyFilters() {
+            const selectedYear = yearFilter.value;
+            const selectedTopic = topicFilter.value;
+            
+            console.log(`Applying filters - Year: ${selectedYear}, Topic: ${selectedTopic}`);
+            
+            // First show all items
+            pubItems.forEach(item => {
+                item.style.display = '';
+            });
+            
+            // Then apply filters
+            pubItems.forEach(item => {
+                let shouldShow = true;
+                
+                // Apply year filter
+                if (selectedYear !== 'all') {
+                    const itemYear = item.closest('.pub-list').getAttribute('data-year');
+                    if (itemYear !== selectedYear) {
+                        shouldShow = false;
+                    }
+                }
+                
+                // Apply topic filter
+                if (shouldShow && selectedTopic !== 'all') {
+                    const itemTopics = item.getAttribute('data-topics') || '';
+                    const topics = itemTopics.split(',').map(t => t.trim());
+                    
+                    if (!topics.includes(selectedTopic)) {
+                        shouldShow = false;
+                    }
+                }
+                
+                // Set item visibility
+                item.style.display = shouldShow ? '' : 'none';
+            });
+            
+            // Hide empty sections with display:none to remove them from the flow
+            let firstVisibleSectionFound = false;
+            
+            // Process sections in DOM order
+            yearHeaders.forEach(header => {
+                const year = header.id.replace('year-', '');
+                const list = document.querySelector(`.pub-list[data-year="${year}"]`);
+                
+                if (!list) return;
+                
+                const visibleItems = Array.from(list.querySelectorAll('.pub-item')).filter(
+                    item => item.style.display !== 'none'
+                );
+                
+                if (visibleItems.length === 0) {
+                    // Hide empty sections completely
+                    header.style.display = 'none';
+                    list.style.display = 'none';
+                } else {
+                    // Show section with visible items
+                    header.style.display = '';
+                    list.style.display = '';
+                    
+                    // Add top margin to the first visible section to maintain spacing
+                    if (!firstVisibleSectionFound) {
+                        header.style.marginTop = '0';
+                        firstVisibleSectionFound = true;
+                    } else {
+                        header.style.marginTop = '30px'; // Reset to default
+                    }
+                }
+            });
+            
+            // If no results found, show a message
+            const hasVisibleItems = Array.from(pubItems).some(item => item.style.display !== 'none');
+            
+            // Get or create the no-results message
+            let noResultsMsg = document.getElementById('no-results-message');
+            if (!noResultsMsg) {
+                noResultsMsg = document.createElement('p');
+                noResultsMsg.id = 'no-results-message';
+                noResultsMsg.style.padding = '20px 0';
+                noResultsMsg.style.fontStyle = 'italic';
+                noResultsMsg.style.color = '#666';
+                document.querySelector('#toptitle').after(noResultsMsg);
+            }
+            
+            if (!hasVisibleItems) {
+                noResultsMsg.textContent = 'No publications match the selected filters.';
+                noResultsMsg.style.display = '';
+            } else {
+                noResultsMsg.style.display = 'none';
+            }
+        }
+        
+        // Reset filters function
+        function resetFilters() {
+            yearFilter.value = 'all';
+            topicFilter.value = 'all';
+            
+            // Hide no results message if exists
+            const noResultsMsg = document.getElementById('no-results-message');
+            if (noResultsMsg) {
+                noResultsMsg.style.display = 'none';
+            }
+            
+            // Show all items
+            pubItems.forEach(item => {
+                item.style.display = '';
+            });
+            
+            // Show all sections with default margins
+            yearHeaders.forEach(header => {
+                header.style.display = '';
+                header.style.marginTop = header.id === 'year-2025' ? '30px' : '30px';
+            });
+            
+            pubLists.forEach(list => {
+                list.style.display = '';
+            });
+        }
+        
+        // Add event listeners
+        yearFilter.addEventListener('change', applyFilters);
+        topicFilter.addEventListener('change', applyFilters);
+        resetButton.addEventListener('click', resetFilters);
     });
 </script>
 
